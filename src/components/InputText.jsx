@@ -6,15 +6,6 @@ const InputText = ({ setTransactions }) => {
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')
 
-  // const onChangeText = e => {
-  //   setInputText(e.target.value)
-  // }
-  // const onChangeAmount = e => {
-  //   setInputAmount(e.target.value)
-  // }
-  // const onChangeType = e => {
-  //   setType(e.target.value)
-  // }
   const handleChange = e => {
     const { name, value } = e.target
     if (name === 'text') {
