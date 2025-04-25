@@ -6,6 +6,7 @@ const InputText = ({ setTransactions }) => {
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')
 
+  // handleChange 하나로 코드 간소화
   const handleChange = e => {
     const { name, value } = e.target
     if (name === 'text') {
