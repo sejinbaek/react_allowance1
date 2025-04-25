@@ -1,0 +1,23 @@
+.InputArea {
+  display: grid;
+  gap: 10px;
+}
+
+.InputArea input {
+  height: 40px;
+  background-color: white;
+}
+
+.radioBtn {
+  display: flex;
+}
+
+.addBtn {
+  width: 100%;
+  padding: 10px 50px;
+  text-align: center;
+  background-color: rgb(52, 88, 231);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+}

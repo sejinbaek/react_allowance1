@@ -1,0 +1,21 @@
+.incomeList {
+  padding: 10px;
+  background-color: white;
+  border-right: 3px solid green;
+}
+
+.expenseList {
+  padding: 10px;
+  background-color: white;
+  border-right: 3px solid red;
+}
+
+.list {
+  box-shadow: 2px 2px 2px gray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list > * {
+  background-color: white;
+}

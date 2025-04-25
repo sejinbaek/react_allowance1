@@ -1,0 +1,72 @@
+@charset 'utf-8';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(221, 221, 221);
+}
+
+.hd {
+  text-align: center;
+  margin-top: 100px;
+  padding: 20px;
+  font-size: 50px;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+li {
+  display: flex;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+section {
+  border: 1px solid red;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+
+  .container > div {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
