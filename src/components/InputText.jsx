@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import css from './InputText.module.css'
 
-const InputText = ({ setTransactions }) => {
+const InputText = () => {
   const [inputText, setInputText] = useState('')
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')

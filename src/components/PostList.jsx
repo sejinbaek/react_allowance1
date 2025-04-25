@@ -7,7 +7,7 @@ const PostList = ({ transactions, setTransactions }) => {
   return (
     <section className={css.listArea}>
       <h2>내역</h2>
-      <div className={css.list}>
+      <div className={`${css.list}`}>
         {transactions.map((transaction, i) => (
           <List transaction={transaction} setTransactions={setTransactions} key={i} />
         ))}
