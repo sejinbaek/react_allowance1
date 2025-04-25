@@ -35,6 +35,12 @@ const InputText = ({ setTransactions }) => {
     setType('income')
   }
 
+  const handleKeyUp = e => {
+    if (e.key === 'Enter') {
+      addList()
+    }
+  }
+
   return (
     <div className={css.InputArea}>
       <p>텍스트</p>
@@ -61,7 +67,12 @@ const InputText = ({ setTransactions }) => {
           지출
         </label>
       </div>
-      <input placeholder="금액을 입력하세요" onChange={onChangeAmount} value={inputAmount} />
+      <input
+        placeholder="금액을 입력하세요"
+        onChange={onChangeAmount}
+        value={inputAmount}
+        onKeyUp={handleKeyUp}
+      />
 
       <button
         className={css.addBtn}
