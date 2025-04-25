@@ -1,20 +1,31 @@
 import React, { useState } from 'react'
 import css from './InputText.module.css'
 
-const InputText = () => {
+const InputText = ({ setTransactions }) => {
   const [inputText, setInputText] = useState('')
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')
 
-  const onChangeText = e => {
-    setInputText(e.target.value)
+  // const onChangeText = e => {
+  //   setInputText(e.target.value)
+  // }
+  // const onChangeAmount = e => {
+  //   setInputAmount(e.target.value)
+  // }
+  // const onChangeType = e => {
+  //   setType(e.target.value)
+  // }
+  const handleChange = e => {
+    const { name, value } = e.target
+    if (name === 'text') {
+      setInputText(value)
+    } else if (name === 'amount') {
+      setInputAmount(value)
+    } else if (name === 'type') {
+      setType(value)
+    }
   }
-  const onChangeAmount = e => {
-    setInputAmount(e.target.value)
-  }
-  const onChangeType = e => {
-    setType(e.target.value)
-  }
+
   const addList = () => {
     setTransactions(prev => {
       const maxId = prev.length > 0 ? Math.max(...prev.map(t => t.id)) : 0
@@ -44,32 +55,38 @@ const InputText = () => {
   return (
     <div className={css.InputArea}>
       <p>텍스트</p>
-      <input placeholder="내용을 입력하세요" onChange={onChangeText} value={inputText} />
+      <input
+        placeholder="내용을 입력하세요"
+        name="text"
+        value={inputText}
+        onChange={handleChange}
+      />
       <div className={css.radioBtn}>
         <label>
           <input
             type="radio"
-            name="radio"
+            name="type"
             value="income"
             checked={type === 'income'}
-            onChange={onChangeType}
+            onChange={handleChange}
           />
           수입
         </label>
         <label>
           <input
             type="radio"
-            name="radio"
+            name="type"
             value="expense"
             checked={type === 'expense'}
-            onChange={onChangeType}
+            onChange={handleChange}
           />
           지출
         </label>
       </div>
       <input
+        name="amount"
         placeholder="금액을 입력하세요"
-        onChange={onChangeAmount}
+        onChange={handleChange}
         value={inputAmount}
         onKeyUp={handleKeyUp}
       />

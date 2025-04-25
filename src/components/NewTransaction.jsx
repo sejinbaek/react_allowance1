@@ -5,7 +5,7 @@ const NewTransaction = ({ setTransactions }) => {
   return (
     <section>
       <h2>새로운 거래 추가</h2>
-      <InputText />
+      <InputText setTransactions={setTransactions} />
     </section>
   )
 }
