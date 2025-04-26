@@ -3,9 +3,21 @@
   padding: 20px;
   background-color: white;
   text-align: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .totalBalanceArea > * {
   background-color: white;
   font-weight: bold;
+}
+
+.totalBalanceArea h2 {
+  padding: 0 20px 0 0;
+}
+
+.totalBalanceArea p {
+  font-size: 20px;
 }
