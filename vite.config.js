@@ -5,7 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/react_allowance/',
+  base: '/react_allowance1/',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
