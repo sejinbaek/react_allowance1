@@ -62,10 +62,7 @@ const InputText = ({ setTransactions }) => {
 
   const handleKeyUp = e => {
     if (e.key === 'Enter') {
-      if (inputText.trim() !== '' && inputAmount.trim() !== '' && type.trim() !== '') addList()
-      else {
-        alert('모든 필드를 입력해주세요')
-      }
+      addList()
     }
   }
 
