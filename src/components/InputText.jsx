@@ -11,7 +11,8 @@ const InputText = ({ transactions, setTransactions }) => {
     amount: '',
   })
 
-  const inputRef = useRef(null)
+  const inputAmountRef = useRef(null)
+  const inputTextRef = useRef(null)
 
   // handleChange 하나로 코드 간소화
   const handleChange = e => {
@@ -71,13 +72,14 @@ const InputText = ({ transactions, setTransactions }) => {
     setInputText('') //초기화
     setInputAmount('')
     setType('income')
+    inputTextRef.current.focus()
   }
 
   // useRef를 사용해 텍스트 필드에서 Enter 클릭 시 금액 필드로 이동시키기
   const handleKeyUp = e => {
     if (e.key === 'Enter') {
       if (e.target.name === 'text') {
-        inputRef.current.focus()
+        inputAmountRef.current.focus()
       } else if (e.target.name === 'amount') {
         addList()
       }
@@ -95,6 +97,7 @@ const InputText = ({ transactions, setTransactions }) => {
           onChange={handleChange}
           onKeyUp={handleKeyUp}
           autoFocus
+          ref={inputTextRef}
           className={errors.text ? css.inputErr : ''}
         />
         {errors.text && <p className={css.error}>{errors.text}</p>}
@@ -128,7 +131,7 @@ const InputText = ({ transactions, setTransactions }) => {
           onChange={handleChange}
           value={inputAmount}
           onKeyUp={handleKeyUp}
-          ref={inputRef}
+          ref={inputAmountRef}
           className={errors.amount ? css.inputErr : ''}
         />
         {errors.amount && <p className={css.error}>{errors.amount}</p>}
