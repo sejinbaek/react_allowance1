@@ -20,7 +20,7 @@ const List = ({ transaction, setTransactions }) => {
     >
       <p>{transaction.description}</p>
       <p>
-        {transaction.type === 'income' ? '+' : '-'}
+        {transaction.type === 'income' ? '+ ₩' : '- ₩'}
         {transaction.amount}
       </p>
       <button onClick={removeList}>삭제</button>

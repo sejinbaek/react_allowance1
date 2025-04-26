@@ -28,11 +28,11 @@ const TotalInOut = ({ transactions }) => {
     <section className={css.TotalInOutArea}>
       <div className={css.TotalInCome}>
         <h2>수입</h2>
-        <p>₩{totalInCome().toLocaleString()}</p>
+        <p>{`₩ ${totalInCome().toLocaleString()}`}</p>
       </div>
       <div className={css.TotalExpense}>
         <h2>지출</h2>
-        <p className={css.TotalExpense}>₩{totalExpense().toLocaleString()}</p>
+        <p className={css.TotalExpense}>{`₩ ${totalExpense().toLocaleString()}`}</p>
       </div>
     </section>
   )
