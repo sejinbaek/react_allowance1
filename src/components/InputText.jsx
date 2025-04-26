@@ -23,6 +23,10 @@ const InputText = ({ setTransactions }) => {
       alert('금액은 숫자로만 입력해주세요')
       return
     }
+    if (inputText.length < 3) {
+      alert('텍스트는 두 글자 이상으로 입력해주세요')
+      return
+    }
     setTransactions(prev => {
       const maxId = prev.length > 0 ? Math.max(...prev.map(t => t.id)) : 0
 
