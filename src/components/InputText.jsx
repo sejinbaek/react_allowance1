@@ -75,9 +75,10 @@ const InputText = ({ setTransactions }) => {
         value={inputText}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
+        autoFocus
         className={errors.text ? css.inputErr : ''}
       />
-      {errors.text && <p style={{ color: 'red' }}>{errors.text}</p>}
+      {errors.text && <p className={css.error}>{errors.text}</p>}
       <div className={css.radioBtn}>
         <label>
           <input
@@ -108,7 +109,7 @@ const InputText = ({ setTransactions }) => {
         onKeyUp={handleKeyUp}
         className={errors.amount ? css.inputErr : ''}
       />
-      {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
+      {errors.amount && <p className={css.error}>{errors.amount}</p>}
 
       <button
         className={css.addBtn}
