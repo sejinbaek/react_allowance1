@@ -77,6 +77,7 @@ const InputText = ({ setTransactions }) => {
         name="text"
         value={inputText}
         onChange={handleChange}
+        onKeyUp={handleKeyUp}
         className={errors.text ? css.inputErr : ''}
       />
       {errors.text && <p style={{ color: 'red' }}>{errors.text}</p>}
