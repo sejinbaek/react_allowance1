@@ -23,8 +23,8 @@ const InputText = ({ setTransactions }) => {
       alert('금액은 숫자로만 입력해주세요')
       return
     }
-    if (inputText.length < 3) {
-      alert('텍스트는 두 글자 이상으로 입력해주세요')
+    if (inputText.length < 2 || inputText.length > 10) {
+      alert('텍스트는 2 ~ 10자 사이로 입력해주세요')
       return
     }
     setTransactions(prev => {
@@ -48,7 +48,10 @@ const InputText = ({ setTransactions }) => {
 
   const handleKeyUp = e => {
     if (e.key === 'Enter') {
-      addList()
+      if (inputText.trim() !== '' && inputAmount.trim() !== '' && type.trim() !== '') addList()
+      else {
+        alert('모든 필드를 입력해주세요')
+      }
     }
   }
 
