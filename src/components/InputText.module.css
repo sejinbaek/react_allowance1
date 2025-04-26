@@ -9,8 +9,15 @@
   padding-left: 10px;
 }
 
+.radioBtnArea {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
 .radioBtn {
   display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .addBtn {

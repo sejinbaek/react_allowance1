@@ -79,8 +79,8 @@ const InputText = ({ setTransactions }) => {
         className={errors.text ? css.inputErr : ''}
       />
       {errors.text && <p className={css.error}>{errors.text}</p>}
-      <div className={css.radioBtn}>
-        <label>
+      <div className={css.radioBtnArea}>
+        <label className={css.radioBtn}>
           <input
             type="radio"
             name="type"
@@ -90,7 +90,7 @@ const InputText = ({ setTransactions }) => {
           />
           수입
         </label>
-        <label>
+        <label className={css.radioBtn}>
           <input
             type="radio"
             name="type"
