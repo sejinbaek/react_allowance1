@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import css from './InputText.module.css'
+import { totalAmount } from '../utils/TotalCount'
 
-const InputText = ({ setTransactions }) => {
+const InputText = ({ transactions, setTransactions }) => {
   const [inputText, setInputText] = useState('')
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')
@@ -25,6 +26,12 @@ const InputText = ({ setTransactions }) => {
   const addList = () => {
     let hasError = false
     let newErrors = { text: '', amount: '' }
+
+    const total = totalAmount(transactions)
+    if (total === 0 && type === 'expense') {
+      alert('외상은 안돼요')
+      return
+    }
 
     // 금액 유효성 검사
     if (inputText.length < 2 || inputText.length > 10) {
