@@ -19,6 +19,10 @@ const InputText = ({ setTransactions }) => {
   }
 
   const addList = () => {
+    if (isNaN(Number(inputAmount))) {
+      alert('금액은 숫자로만 입력해주세요')
+      return
+    }
     setTransactions(prev => {
       const maxId = prev.length > 0 ? Math.max(...prev.map(t => t.id)) : 0
 
@@ -87,7 +91,7 @@ const InputText = ({ setTransactions }) => {
         className={css.addBtn}
         type="submit"
         onClick={addList}
-        disabled={inputText === '' || inputAmount === '' || type === ''}
+        disabled={inputText.trim() === '' || inputAmount.trim() === '' || type === ''}
       >
         거래 추가
       </button>
