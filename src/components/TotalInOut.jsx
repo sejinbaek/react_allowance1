@@ -2,7 +2,7 @@ import React from 'react'
 import css from './TotalInOut.module.css'
 
 const TotalInOut = ({ transactions }) => {
-  console.log('TotalInOut', transactions)
+  // 총 수입을 구하는 함수
   const totalInCome = () => {
     return transactions.reduce((acc, cur) => {
       if (cur.type === 'income') {
@@ -12,7 +12,7 @@ const TotalInOut = ({ transactions }) => {
       }
     }, 0)
   }
-
+  // 총 지출을 구하는 함수
   const totalExpense = () => {
     const total = transactions.reduce((acc, cur) => {
       if (cur.type === 'expense') {
@@ -28,11 +28,11 @@ const TotalInOut = ({ transactions }) => {
     <section className={css.TotalInOutArea}>
       <div className={css.TotalInCome}>
         <h2>수입</h2>
-        <span>₩{totalInCome().toLocaleString()}</span>
+        <p>₩{totalInCome().toLocaleString()}</p>
       </div>
       <div className={css.TotalExpense}>
         <h2>지출</h2>
-        <span className={css.TotalExpense}>₩{totalExpense().toLocaleString()}</span>
+        <p className={css.TotalExpense}>₩{totalExpense().toLocaleString()}</p>
       </div>
     </section>
   )

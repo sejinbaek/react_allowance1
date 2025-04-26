@@ -8,18 +8,21 @@
   box-shadow: 2px 2px 5px gray;
 }
 
-.TotalInOutArea > div > * {
-  background-color: white !important;
+.TotalInCome,
+.TotalExpense,
+.TotalExpense > *,
+.TotalInCome > * {
+  background-color: white;
 }
 
-span {
+p {
   font-size: 20px;
 }
 
-.TotalExpense span {
+.TotalExpense p {
   color: red;
 }
 
-.TotalInCome span {
+.TotalInCome p {
   color: rgb(10, 171, 10);
 }

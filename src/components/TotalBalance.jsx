@@ -20,7 +20,7 @@ const TotalBalance = ({ transactions }) => {
   return (
     <section className={css.totalBalanceArea}>
       <h2>잔액</h2>
-      <span>₩{totalAmount().toLocaleString()}</span>
+      <p>₩{totalAmount().toLocaleString()}</p>
     </section>
   )
 }
