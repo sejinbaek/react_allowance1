@@ -14,12 +14,15 @@ const InputText = ({ transactions, setTransactions }) => {
   // handleChange 하나로 코드 간소화
   const handleChange = e => {
     const { name, value } = e.target
-    if (name === 'text') {
-      setInputText(value)
-    } else if (name === 'amount') {
-      setInputAmount(value)
-    } else if (name === 'type') {
-      setType(value)
+
+    const inputMap = {
+      text: setInputText,
+      amount: setInputAmount,
+      type: setType,
+    }
+
+    if (inputMap[name]) {
+      inputMap[name](value)
     }
   }
 
