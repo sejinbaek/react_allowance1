@@ -1,5 +1,18 @@
+.InputArea {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .InputArea input {
-  height: 40px;
+  width: 100%;
+  height: 50px;
   background-color: white;
   padding-left: 10px;
 }
@@ -8,16 +21,20 @@
   display: flex;
   gap: 50px;
   align-items: center;
+  white-space: nowrap;
 }
+
 .radioBtn {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 20px;
 }
 
 .addBtn {
   width: 100%;
   padding: 10px 50px;
+  margin-top: 10px;
   text-align: center;
   background-color: rgb(52, 88, 231);
   color: white;

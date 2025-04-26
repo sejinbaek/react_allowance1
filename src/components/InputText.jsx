@@ -68,17 +68,19 @@ const InputText = ({ setTransactions }) => {
 
   return (
     <div className={css.InputArea}>
-      <p>텍스트</p>
-      <input
-        placeholder="내용을 입력하세요"
-        name="text"
-        value={inputText}
-        onChange={handleChange}
-        onKeyUp={handleKeyUp}
-        autoFocus
-        className={errors.text ? css.inputErr : ''}
-      />
-      {errors.text && <p className={css.error}>{errors.text}</p>}
+      <div className={css.field}>
+        <p>텍스트</p>
+        <input
+          placeholder="내용을 입력하세요"
+          name="text"
+          value={inputText}
+          onChange={handleChange}
+          onKeyUp={handleKeyUp}
+          autoFocus
+          className={errors.text ? css.inputErr : ''}
+        />
+        {errors.text && <p className={css.error}>{errors.text}</p>}
+      </div>
       <div className={css.radioBtnArea}>
         <label className={css.radioBtn}>
           <input
@@ -101,15 +103,17 @@ const InputText = ({ setTransactions }) => {
           지출
         </label>
       </div>
-      <input
-        name="amount"
-        placeholder="금액을 입력하세요"
-        onChange={handleChange}
-        value={inputAmount}
-        onKeyUp={handleKeyUp}
-        className={errors.amount ? css.inputErr : ''}
-      />
-      {errors.amount && <p className={css.error}>{errors.amount}</p>}
+      <div className={css.field}>
+        <input
+          name="amount"
+          placeholder="금액을 입력하세요"
+          onChange={handleChange}
+          value={inputAmount}
+          onKeyUp={handleKeyUp}
+          className={errors.amount ? css.inputErr : ''}
+        />
+        {errors.amount && <p className={css.error}>{errors.amount}</p>}
+      </div>
 
       <button
         className={css.addBtn}
