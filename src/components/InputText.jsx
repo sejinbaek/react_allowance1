@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import css from './InputText.module.css'
 import { totalAmount } from '../utils/TotalCount'
 
@@ -10,6 +10,8 @@ const InputText = ({ transactions, setTransactions }) => {
     text: '',
     amount: '',
   })
+
+  const inputRef = useRef(null)
 
   // handleChange 하나로 코드 간소화
   const handleChange = e => {
@@ -71,9 +73,14 @@ const InputText = ({ transactions, setTransactions }) => {
     setType('income')
   }
 
+  // useRef를 사용해 텍스트 필드에서 Enter 클릭 시 금액 필드로 이동시키기
   const handleKeyUp = e => {
     if (e.key === 'Enter') {
-      addList()
+      if (e.target.name === 'text') {
+        inputRef.current.focus()
+      } else if (e.target.name === 'amount') {
+        addList()
+      }
     }
   }
 
@@ -121,6 +128,7 @@ const InputText = ({ transactions, setTransactions }) => {
           onChange={handleChange}
           value={inputAmount}
           onKeyUp={handleKeyUp}
+          ref={inputRef}
           className={errors.amount ? css.inputErr : ''}
         />
         {errors.amount && <p className={css.error}>{errors.amount}</p>}
