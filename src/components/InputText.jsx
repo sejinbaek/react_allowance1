@@ -5,8 +5,10 @@ const InputText = ({ setTransactions }) => {
   const [inputText, setInputText] = useState('')
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')
-  const [textErr, setTextErr] = useState('')
-  const [amountErr, setAmountErr] = useState('')
+  const [errors, setErrors] = useState({
+    text: '',
+    amount: '',
+  })
 
   // handleChange 하나로 코드 간소화
   const handleChange = e => {
@@ -22,21 +24,20 @@ const InputText = ({ setTransactions }) => {
 
   const addList = () => {
     let hasError = false
+    let newErrors = { text: '', amount: '' }
+
     // 금액 유효성 검사
     if (inputText.length < 2 || inputText.length > 10) {
-      setTextErr('텍스트는 2 ~ 10자 사이로 입력해주세요')
+      newErrors.text = '텍스트는 2 ~ 10자 사이로 입력해주세요'
       hasError = true
-    } else {
-      setTextErr('')
     }
 
     // 텍스트 유효성 검사
     if (isNaN(Number(inputAmount))) {
-      setAmountErr('금액은 숫자로만 입력해주세요')
+      newErrors.amount = '금액은 숫자로만 입력해주세요'
       hasError = true
-    } else {
-      setAmountErr('')
     }
+    setErrors(newErrors)
 
     if (hasError) return
 
@@ -76,9 +77,9 @@ const InputText = ({ setTransactions }) => {
         name="text"
         value={inputText}
         onChange={handleChange}
-        className={textErr ? css.inputErr : ''}
+        className={errors.text ? css.inputErr : ''}
       />
-      {textErr && <p style={{ color: 'red' }}>{textErr}</p>}
+      {errors.text && <p style={{ color: 'red' }}>{errors.text}</p>}
       <div className={css.radioBtn}>
         <label>
           <input
@@ -107,9 +108,9 @@ const InputText = ({ setTransactions }) => {
         onChange={handleChange}
         value={inputAmount}
         onKeyUp={handleKeyUp}
-        className={amountErr ? css.inputErr : ''}
+        className={errors.amount ? css.inputErr : ''}
       />
-      {amountErr && <p style={{ color: 'red' }}>{amountErr}</p>}
+      {errors.amount && <p style={{ color: 'red' }}>{errors.amount}</p>}
 
       <button
         className={css.addBtn}
