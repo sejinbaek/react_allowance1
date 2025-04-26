@@ -27,6 +27,7 @@ const InputText = ({ transactions, setTransactions }) => {
     let hasError = false
     let newErrors = { text: '', amount: '' }
 
+    // 잔액 0일 때 지출 내역 추가 막기
     const total = totalAmount(transactions)
     if (total === 0 && type === 'expense') {
       alert('외상은 안돼요')
