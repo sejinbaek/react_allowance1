@@ -38,10 +38,10 @@ const InputText = ({ transactions, setTransactions }) => {
       let hasError = false
       let newErrors = { text: '', amount: '' }
 
-      // 잔액 0일 때 지출 내역 추가 막기
+      // 잔액 0일 때와 부족할 때 지출 내역 추가 막기
       const total = totalAmount(transactions)
-      if (total === 0 && type === 'expense') {
-        alert('외상은 안돼요')
+      if (type === 'expense' && (total === 0 || total < Number(inputAmount))) {
+        alert('잔액이 부족해요')
         return
       }
 
