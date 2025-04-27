@@ -6,6 +6,7 @@ const InputText = ({ transactions, setTransactions }) => {
   const [inputText, setInputText] = useState('')
   const [inputAmount, setInputAmount] = useState('')
   const [type, setType] = useState('income')
+  const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({
     text: '',
     amount: '',
@@ -30,49 +31,60 @@ const InputText = ({ transactions, setTransactions }) => {
   }
 
   const addList = () => {
-    let hasError = false
-    let newErrors = { text: '', amount: '' }
+    if (loading) return
+    setLoading(true)
 
-    // 잔액 0일 때 지출 내역 추가 막기
-    const total = totalAmount(transactions)
-    if (total === 0 && type === 'expense') {
-      alert('외상은 안돼요')
-      return
-    }
+    try {
+      let hasError = false
+      let newErrors = { text: '', amount: '' }
 
-    // 금액 유효성 검사
-    if (inputText.length < 2 || inputText.length > 10) {
-      newErrors.text = '텍스트는 2 ~ 10자 사이로 입력해주세요'
-      hasError = true
-    }
-
-    // 텍스트 유효성 검사
-    if (isNaN(Number(inputAmount))) {
-      newErrors.amount = '금액은 숫자로만 입력해주세요'
-      hasError = true
-    }
-    setErrors(newErrors)
-
-    if (hasError) return
-
-    setTransactions(prev => {
-      const maxId = prev.length > 0 ? Math.max(...prev.map(t => t.id)) : 0
-
-      const newList = {
-        id: maxId + 1,
-        description: inputText,
-        amount: Number(inputAmount),
-        type: type,
-        date: new Date().toISOString().slice(0, 10),
+      // 잔액 0일 때 지출 내역 추가 막기
+      const total = totalAmount(transactions)
+      if (total === 0 && type === 'expense') {
+        alert('외상은 안돼요')
+        return
       }
 
-      return [...prev, newList]
-    })
+      // 금액 유효성 검사
+      if (inputText.length < 2 || inputText.length > 10) {
+        newErrors.text = '텍스트는 2 ~ 10자 사이로 입력해주세요'
+        hasError = true
+      }
 
-    setInputText('') //초기화
-    setInputAmount('')
-    setType('income')
-    inputTextRef.current.focus()
+      // 텍스트 유효성 검사
+      if (isNaN(Number(inputAmount))) {
+        newErrors.amount = '금액은 숫자로만 입력해주세요'
+        hasError = true
+      }
+      setErrors(newErrors)
+
+      if (hasError) return
+
+      setTransactions(prev => {
+        const maxId = prev.length > 0 ? Math.max(...prev.map(t => t.id)) : 0
+
+        const newList = {
+          id: maxId + 1,
+          description: inputText,
+          amount: Number(inputAmount),
+          type: type,
+          date: new Date().toISOString().slice(0, 10),
+        }
+
+        return [...prev, newList]
+      })
+
+      setInputText('') //초기화
+      setInputAmount('')
+      setType('income')
+      inputTextRef.current.focus()
+    } catch (err) {
+      console.log('addList -- err', err)
+    } finally {
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000)
+    }
   }
 
   // useRef를 사용해 텍스트 필드에서 Enter 클릭 시 금액 필드로 이동시키기
@@ -98,6 +110,7 @@ const InputText = ({ transactions, setTransactions }) => {
           onKeyUp={handleKeyUp}
           autoFocus
           ref={inputTextRef}
+          disabled={loading}
           className={errors.text ? css.inputErr : ''}
         />
         {errors.text && <p className={css.error}>{errors.text}</p>}
@@ -110,6 +123,7 @@ const InputText = ({ transactions, setTransactions }) => {
             value="income"
             checked={type === 'income'}
             onChange={handleChange}
+            disabled={loading}
           />
           수입
         </label>
@@ -120,6 +134,7 @@ const InputText = ({ transactions, setTransactions }) => {
             value="expense"
             checked={type === 'expense'}
             onChange={handleChange}
+            disabled={loading}
           />
           지출
         </label>
@@ -132,6 +147,7 @@ const InputText = ({ transactions, setTransactions }) => {
           value={inputAmount}
           onKeyUp={handleKeyUp}
           ref={inputAmountRef}
+          disabled={loading}
           className={errors.amount ? css.inputErr : ''}
         />
         {errors.amount && <p className={css.error}>{errors.amount}</p>}
@@ -141,7 +157,7 @@ const InputText = ({ transactions, setTransactions }) => {
         className={css.addBtn}
         type="submit"
         onClick={addList}
-        disabled={inputText.trim() === '' || inputAmount.trim() === '' || type === ''}
+        disabled={loading || inputText.trim() === '' || inputAmount.trim() === '' || type === ''}
       >
         거래 추가
       </button>
