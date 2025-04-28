@@ -1,6 +1,6 @@
 # 용돈 기입장 프로젝트
 
-![image.png](attachment:bdea4a60-4328-4bc4-91bd-869e023f5abc:image.png)
+![Image](https://github.com/user-attachments/assets/413a4209-dc51-48ee-a8b7-3a19eb48d31f)
 
 ## 개요
 
